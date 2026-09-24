@@ -4,7 +4,7 @@ Tags: editor, frontend editor, block editor, gutenberg, inline editing
 Requires at least: 6.4
 Tested up to: 6.9
 Requires PHP: 7.4
-Stable tag: 0.1.5
+Stable tag: 0.1.6
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -70,6 +70,10 @@ Open an issue at https://github.com/tpaksu/frontend-block-editor/issues.
 
 == Changelog ==
 
+= 0.1.6 =
+* Fix forms (shortcode and block output such as checkout, review, and contact forms) losing their fields for logged-in editors: the rendered `the_content` output is no longer run through `wp_kses_post()` a second time.
+* Only wrap the main queried post's content, and only for users who can edit that post, matching the title wrapper.
+
 = 0.1.5 =
 * Escape post title and content output in `the_title` and `the_content` filter callbacks via `wp_kses_post()` to satisfy WordPress.org output-escaping review feedback.
 * Escape the REST nonce and root URL injected into inline JavaScript via `wp_json_encode()` instead of relying on `esc_url_raw()` (which is a sanitizer, not an output escaper).
@@ -89,6 +93,9 @@ Open an issue at https://github.com/tpaksu/frontend-block-editor/issues.
 * Initial release: frontend block editing, autosave, publish and unpublish guardrails, frontend post/page creation, undo/redo, admin bar styling.
 
 == Upgrade Notice ==
+
+= 0.1.6 =
+Fixes forms on pages (checkout, reviews, contact forms) losing their fields and failing to submit for logged-in editors since 0.1.5.
 
 = 0.1.5 =
 Security and WordPress.org compliance fixes: output escaping in `the_title` and `the_content` callbacks, JSON-encoded inline JS payloads, and a renamed main class (`Fbedit_Plugin`). No user-visible behaviour changes.
