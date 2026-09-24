@@ -235,18 +235,24 @@ class Fbedit_Plugin {
 	 * @return string
 	 */
 	public function wrap_content( $content ) {
-		if ( ! $this->should_instrument ) {
+		if ( ! $this->should_instrument || ! in_the_loop() ) {
 			return $content;
 		}
 
-		$post_id   = get_the_ID();
+		$post_id = get_the_ID();
+		if ( (int) get_queried_object_id() !== (int) $post_id || ! current_user_can( 'edit_post', $post_id ) ) {
+			return $content;
+		}
+
 		$post_type = get_post_type();
 
+		// $content is already-rendered output; running it through wp_kses_post()
+		// again strips forms, inputs and embeds that shortcodes and blocks render.
 		return sprintf(
 			'<div id="fbedit-content" data-fbedit-post="%d" data-fbedit-post-type="%s">%s</div>',
 			intval( $post_id ),
 			esc_attr( $post_type ),
-			wp_kses_post( $content )
+			$content
 		);
 	}
 
