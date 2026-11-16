@@ -3,7 +3,7 @@
  * Plugin Name: Frontend Block Editor
  * Plugin URI:  https://github.com/tpaksu/frontend-block-editor
  * Description: Edit your WordPress content directly on the frontend. Click any block, edit it inline, save without leaving the page.
- * Version:     0.1.5
+ * Version:     0.1.6
  * Author:      Taha Paksu
  * Author URI:  https://github.com/tpaksu
  * License:     GPL-2.0-or-later
@@ -17,7 +17,7 @@
 
 defined( 'ABSPATH' ) || exit;
 
-define( 'FBEDIT_VERSION', '0.1.5' );
+define( 'FBEDIT_VERSION', '0.1.6' );
 define( 'FBEDIT_PLUGIN_DIR', plugin_dir_path( __FILE__ ) );
 define( 'FBEDIT_PLUGIN_URL', plugin_dir_url( __FILE__ ) );
 
