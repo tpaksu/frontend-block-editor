@@ -217,7 +217,7 @@ class Fbedit_Plugin {
 			return $title;
 		}
 
-		if ( (int) get_queried_object_id() !== (int) $post_id ) {
+		if ( (int) get_queried_object_id() !== (int) $post_id || ! current_user_can( 'edit_post', $post_id ) ) {
 			return $title;
 		}
 
